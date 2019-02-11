@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <title>Songify</title>
+    <style>
+        .player_component {
+            margin: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="player_component">
+        Artist: <p id="artist_name"></p>
+    </div>
+
+    <div class="player_component">
+        Album: <p id="album_name"></p>
+    </div>
+
+    <div class="player_component">
+        <audio id ="audio_player" autoplay controls title="TJs PL" >      
+    </div>
+
+</body>
+
+<script>
+    window.onload = function () {
+        console.log("Here");
+        fetch('http://127.0.0.1:5000/')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                var songLink = myJson['Link']
+
+                document.getElementById('audio_player').src = songLink;
+                
+                console.log(JSON.stringify(myJson));
+            });
+    }
+
+
+</script>
+
+</html>
