@@ -19,28 +19,29 @@
     </div>
 
     <div class="player_component">
-        <audio id ="audio_player" autoplay controls title="TJs PL" >      
+        <h5>WARNING: Load time for song can be slow, 30-45 seconds slow</h5>
+        <audio id="audio_player" autoplay controls title="Songify">
     </div>
 
 </body>
 
 <script>
     window.onload = function () {
-        console.log("Here");
-        fetch('http://127.0.0.1:5000/')
+        fetch('http://54.224.107.140/')
             .then(function (response) {
                 return response.json();
             })
             .then(function (myJson) {
-                var songLink = myJson['Link']
+                var songLink = myJson['Link'];
+                var artistName = myJson['Artist'];
+                var albumName = myJson['Album'];
+                console.log(albumName);
 
                 document.getElementById('audio_player').src = songLink;
-                
-                console.log(JSON.stringify(myJson));
+                document.getElementById('artist_name').innerHTML = artistName;
+                document.getElementById('album_name').innerText = albumName;
             });
     }
-
-
 </script>
 
 </html>
